@@ -95,7 +95,7 @@ $ docker compose up -d
 
 #### 5. Verify the service status
 
-Check that your rqlite container is running and healthy using `docker compose ps.
+Check that your rqlite container is running and healthy using `docker compose ps`.
 
 ```bash
 $ docker compose ps
@@ -195,7 +195,7 @@ myrqlite-host-1:4001> .exit
 
 #### 9. Stop and clean up the service
 
-When you're finished, docker compose down will stop the containers and remove the containers, networks, volumes, and images created by docker compose up.
+When you're finished, `docker compose down` will stop the containers and remove the containers, networks, volumes, and images created by `docker compose up`.
 
 ```bash
 $ docker compose down

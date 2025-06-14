@@ -48,7 +48,7 @@ However, the `latest` version can typically be used in the code.
 ## [Single-node database](./rqliteSingleNode)
 
 
-## General clustering with 3 nodes
+## [General clustering with 3 nodes](./rqliteGeneralClustering)
 
 
 ## Automatic clustering with 3 nodes
