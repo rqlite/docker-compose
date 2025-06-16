@@ -45,10 +45,10 @@ However, the `latest` version can typically be used in the code.
 ---
 
 
-## [Single-node database](./rqliteSingleNode)
+## [Single-node database](./rqliteSingleNode/)
 
 
-## [General clustering with 3 nodes](./rqliteGeneralClustering)
+## [General clustering with 3 nodes](./rqliteGeneralClustering/)
 
 
-## Automatic clustering with 3 nodes
+## [Automatic clustering with 3 nodes](./rqliteAutomaticClustering/)
