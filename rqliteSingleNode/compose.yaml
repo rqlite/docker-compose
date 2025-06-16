@@ -1,0 +1,31 @@
+# Created: 2025-06-13 23:47:19
+# Updated:
+# Language: Docker Compose version v2.36.2
+# Images:
+#    - rqlite/rqlite:8.37.4
+# Project: rqlite Single-Node
+
+name: rqliteSingleNode
+
+services:
+
+  myrqlite-service-1:
+    image: rqlite/rqlite:latest
+    container_name: myrqlite-container-1
+    hostname: myrqlite-host-1
+    volumes:
+      - ./rqlite-data/myrqlite-node-1:/rqlite/file
+    ports:
+      - "4001:4001"
+      - "4002:4002"
+    environment:
+      NODE_ID: myrqlite-node-1
+      HTTP_ADDR: myrqlite-host-1:4001
+      RAFT_ADDR: myrqlite-host-1:4002
+      SQLITE_EXTENSIONS: "sqlean,sqlite-vec,misc"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://myrqlite-host-1:4001/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s

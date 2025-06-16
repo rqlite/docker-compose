@@ -1,0 +1,69 @@
+# Created: 2025-06-03 21:13:24
+# Updated:
+# Language: Docker Compose version v2.36.2
+# Images:
+#   - rqlite/rqlite:8.37.4
+# Project: rqlite General Clustering
+
+name: rqliteCluster
+
+services:
+
+  myrqlite-service-1:
+    image: rqlite/rqlite:latest
+    container_name: myrqlite-container-1
+    hostname: myrqlite-host-1
+    volumes:
+      - ./rqlite-data/myrqlite-node-1:/rqlite/file
+    ports:
+      - "4001:4001"
+      - "4002:4002"
+    environment:
+      NODE_ID: myrqlite-node-1
+      HTTP_ADDR: myrqlite-host-1:4001
+      RAFT_ADDR: myrqlite-host-1:4002
+      SQLITE_EXTENSIONS: "sqlean,sqlite-vec,misc"
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://myrqlite-host-1:4001/status"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+  myrqlite-service-2:
+    image: rqlite/rqlite:latest
+    container_name: myrqlite-container-2
+    hostname: myrqlite-host-2
+    volumes:
+      - ./rqlite-data/myrqlite-node-2:/rqlite/file
+    ports:
+      - "4011:4001"
+      - "4012:4002"
+    command: -join myrqlite-service-1:4002
+    environment:
+      NODE_ID: myrqlite-node-2
+      HTTP_ADDR: myrqlite-host-2:4001
+      RAFT_ADDR: myrqlite-host-2:4002
+      SQLITE_EXTENSIONS: "sqlean,sqlite-vec,misc"
+    depends_on:
+      myrqlite-service-1:
+        condition: service_healthy
+
+  myrqlite-service-3:
+    image: rqlite/rqlite:latest
+    container_name: myrqlite-container-3
+    hostname: myrqlite-host-3
+    volumes:
+      - ./rqlite-data/myrqlite-node-3:/rqlite/file
+    ports:
+      - "4021:4001"
+      - "4022:4002"
+    command: -join myrqlite-service-1:4002
+    environment:
+      NODE_ID: myrqlite-node-3
+      HTTP_ADDR: myrqlite-host-3:4001
+      RAFT_ADDR: myrqlite-host-3:4002
+      SQLITE_EXTENSIONS: "sqlean,sqlite-vec,misc"
+    depends_on:
+      myrqlite-service-1:
+        condition: service_healthy
