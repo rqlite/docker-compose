@@ -19,7 +19,7 @@ This documentation provides examples for setting up rqlite using Docker Compose,
 
 #### Conventions
 
-To make `compose.yaml` files easier to understand, I use distinct and explicit naming conventions:
+The following naming conventions are used to make `compose.yaml` files easier to understand:
 
   * **name**: `rqlite<project>`
   * **services**: `myrqlite-service-<id>`

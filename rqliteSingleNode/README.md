@@ -11,7 +11,7 @@ Let's walk through setting up a single rqlite node using Docker Compose.
 
 #### 1. Project directory `rqliteSingleNode`
 
-Folder, `rqliteSingleNode` is where your `compose.yaml file will reside.
+Folder, `rqliteSingleNode` is where your `compose.yaml` file will reside.
 
 
 #### 2. Create the data persistence folder
