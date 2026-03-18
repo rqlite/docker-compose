@@ -1,8 +1,8 @@
 # Created: 2025-06-13 23:47:19
-# Updated:
-# Language: Docker Compose version v2.36.2
+# Updated: 2026-03-18 20:38:08
+# Language: Docker Compose version v5.1.0
 # Images:
-#    - rqlite/rqlite:8.37.4
+#    - rqlite/rqlite:9.4.5
 # Project: rqlite Single-Node
 
 name: rqliteSingleNode
@@ -14,7 +14,7 @@ services:
     container_name: myrqlite-container-1
     hostname: myrqlite-host-1
     volumes:
-      - ./rqlite-data/myrqlite-node-1:/rqlite/file
+      - rqlite-data-node-1:/rqlite/file
     ports:
       - "4001:4001"
       - "4002:4002"
@@ -29,3 +29,6 @@ services:
       timeout: 5s
       retries: 5
       start_period: 30s
+
+volumes:
+    rqlite-data-node-1: {}

@@ -1,8 +1,8 @@
 # Created: 2025-06-03 21:13:24
-# Updated:
-# Language: Docker Compose version v2.36.2
+# Updated: 2026-03-18 21:17:08
+# Language: Docker Compose version v5.1.0
 # Images:
-#   - rqlite/rqlite:8.37.4
+#   - rqlite/rqlite:9.4.5
 # Project: rqlite General Clustering
 
 name: rqliteCluster
@@ -14,7 +14,7 @@ services:
     container_name: myrqlite-container-1
     hostname: myrqlite-host-1
     volumes:
-      - ./rqlite-data/myrqlite-node-1:/rqlite/file
+      - rqlite-data-node-1:/rqlite/file
     ports:
       - "4001:4001"
       - "4002:4002"
@@ -35,7 +35,7 @@ services:
     container_name: myrqlite-container-2
     hostname: myrqlite-host-2
     volumes:
-      - ./rqlite-data/myrqlite-node-2:/rqlite/file
+      - rqlite-data-node-2:/rqlite/file
     ports:
       - "4011:4001"
       - "4012:4002"
@@ -54,7 +54,7 @@ services:
     container_name: myrqlite-container-3
     hostname: myrqlite-host-3
     volumes:
-      - ./rqlite-data/myrqlite-node-3:/rqlite/file
+      - rqlite-data-node-3:/rqlite/file
     ports:
       - "4021:4001"
       - "4022:4002"
@@ -67,3 +67,8 @@ services:
     depends_on:
       myrqlite-service-1:
         condition: service_healthy
+
+volumes:
+    rqlite-data-node-1: {}
+    rqlite-data-node-2: {}
+    rqlite-data-node-3: {}

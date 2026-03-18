@@ -25,8 +25,8 @@ The following naming conventions are used to make `compose.yaml` files easier to
   * **services**: `myrqlite-service-<id>`
   * **container_name**: `myrqlite-container-<id>`
   * **hostname**: `myrqlite-host-<id>`
-  * **volumes**: `./rqlite-data/myrqlite-node-<id>:/rqlite/file`.
-For testing, we recommend creating a local `rqlite-data` folder using the command `mkdir -p rqlite-data`.
+  * **volumes**: `rqlite-data-node-<id>`.
+After `docker compose up -d`, command `docker compose volumes` display volume name as `rqlite<project>_rqlite-data-node-<id>`.
   * **NODE_ID**: `myrqlite-node-<id>`
 
 The initial comment lines within each `compose.yaml` file describe the test versions at the time of publication.
